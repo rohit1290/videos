@@ -30,7 +30,7 @@ if($page_owner->name !== elgg_get_site_entity()->name){
 	);
 }
 
-$content = elgg_list_entities_from_metadata($options);
+$content = elgg_list_entities($options);
 
 echo $content;
 if ($content) {

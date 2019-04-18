@@ -30,7 +30,7 @@ function videos_get_page_content_featured($guid = NULL) {
                                 ),
                         );
 
-                $list = elgg_list_entities_from_metadata($options);
+                $list = elgg_list_entities($options);
                 $return['filter_context'] = 'Featured';
                 $return['content'] = $list;
 

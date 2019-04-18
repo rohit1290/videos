@@ -19,7 +19,7 @@ $options = array(
                                         "value" => true
                                 ),
                         );
-$content = elgg_list_entities_from_metadata($options);
+$content = elgg_list_entities($options);
 
 $title = elgg_echo('videos:featured');
 
