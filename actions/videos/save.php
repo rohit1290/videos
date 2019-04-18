@@ -20,7 +20,8 @@ $video_url = get_input('video_url');
 $video_url = str_replace("feature=player_embedded&amp;", "", $video_url);
 $video_url = str_replace("feature=player_detailpage&amp;", "", $video_url);
 $video_url = str_replace("http://", "https://", $video_url);
-
+$video_url = str_replace("/v/", "/embed/", $video_url);
+$video_url = str_replace("https://youtu.be/", "https://www.youtube.com/embed/", $video_url);
 
 
 elgg_make_sticky_form('videos');

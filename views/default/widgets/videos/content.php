@@ -7,13 +7,13 @@
 elgg_load_library('elgg:videos');
 
 $page_owner = elgg_get_page_owner_entity();
-$max = "10";
+$max = (int) $vars['entity']->max_display;
 
 if($page_owner->name !== elgg_get_site_entity()->name){
 	$options = array(
 	        'type' => 'object',
 	        'subtype' => 'videos',
-        	'container_guid' => $container_guid,
+        	'container_guid' => $page_owner->guid,
 	        'limit' => $max,
        		'full_view' => FALSE,
         	'pagination' => FALSE,

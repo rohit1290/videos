@@ -4,6 +4,7 @@
  *	@package Elgg-videos
  */
 
+require_once 'vendors/Mobile_Detect.php';
 
 elgg_register_event_handler('init', 'system', 'videos_init');
 /**
@@ -11,14 +12,14 @@ elgg_register_event_handler('init', 'system', 'videos_init');
  */
 function videos_init() {
 
-        // add a site navigation item
-        $item = new ElggMenuItem('video', elgg_echo('videos'), 'videos/all');
-        elgg_register_menu_item('site', $item);
+  // add a site navigation item
+  $item = new ElggMenuItem('video', elgg_echo('videos'), 'videos/all');
+  elgg_register_menu_item('site', $item);
 
-	elgg_register_library('elgg:videos', elgg_get_plugins_path() . 'videos/lib/videos.php');
-
-	elgg_register_library('elgg:videos:embed', elgg_get_plugins_path() . 'videos/lib/embed_video.php');
-	elgg_register_library('elgg:youtube_api', elgg_get_plugins_path() . 'videos/lib/youtube_functions.php');
+	require_once __DIR__ . 'videos/lib/videos.php';
+	require_once __DIR__ . 'videos/lib/embed_video.php';
+	require_once __DIR__ . 'videos/lib/youtube_functions.php';
+  
 	$action_path =  elgg_get_plugins_path() ."videos/actions/videos";
 	elgg_register_action('videos/save', "$action_path/save.php");
 	elgg_register_action('videos/delete', "$action_path/delete.php");
@@ -76,7 +77,6 @@ function videos_init() {
 function videos_view_filter($hook, $entity_type, $returnvalue, $params){
 	elgg_load_library('elgg:videos:embed');
 	$patterns = array(	'/(((https?:\/\/)?)|(^.\/))(((www.)?)|(^.\/))youtube\.com\/watch[?]v=([^\[\]()<.,\s\n\t\r]+)/i',
-                        '/(((https?:\/\/)?)|(^.\/))(((www.)?)|(^.\/))youtube\.com\/embed\/([^\[\]()<.,\s\n\t\r]+)/i',
 						'/(((https?:\/\/)?)|(^.\/))(((www.)?)|(^.\/))youtu\.be\/([^\[\]()<.,\s\n\t\r]+)/i',
 						'/(https?:\/\/)(www\.)?(vimeo\.com\/groups)(.*)(\/videos\/)([0-9]*)/i',
 						'/(https?:\/\/)(www\.)?(vimeo.com\/)([0-9]*)/i',

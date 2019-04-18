@@ -31,6 +31,7 @@
  * @return string html video div with object embed code or error message
  */
 function videoembed_create_embed_object($url, $guid, $videowidth=0) {
+
 	if (!isset($url)) {
 		return '<p><b>' . elgg_echo('embedvideo:novideo') . '</b></p>';
 	}
@@ -39,8 +40,8 @@ function videoembed_create_embed_object($url, $guid, $videowidth=0) {
 		return videoembed_youtube_handler($url, $guid, $videowidth);
 	} else if (strpos($url, 'youtu.be') != false) {
 		return videoembed_youtube_shortener_parse_url($url, $guid, $videowidth);
-    } else if (strpos($url, 'facebook.com') != false) {
-        return videoembed_facebook_shortener_parse_url($url, $guid, $videowidth);
+	} else if (strpos($url, 'facebook.com') != false) {
+		return videoembed_facebook_shortener_parse_url($url, $guid, $videowidth);
 	} else if (strpos($url, 'video.google.com') != false) {
 		return videoembed_google_handler($url, $guid, $videowidth);
 	} else if (strpos($url, 'vimeo.com') != false) {
@@ -157,10 +158,9 @@ function videoembed_calc_size(&$width, &$height, $aspect_ratio, $toolbar_height)
 		$width = 284;
 	}
 
-	// commented by nikos
-	// if (elgg_in_context('widgets')) {
-		//$width = 200;
-	// }
+        if (elgg_in_context('widgets')) {
+                $width = 200;
+        }
 	$height = round($width / $aspect_ratio) + $toolbar_height;
 }
 
@@ -174,7 +174,6 @@ function videoembed_calc_size(&$width, &$height, $aspect_ratio, $toolbar_height)
  */
 function videoembed_youtube_handler($url, $guid, $videowidth) {
 	// this extracts the core part of the url needed for embeding
-
 	$videourl = videoembed_youtube_parse_url($url);
 	if (!isset($videourl)) {
 		return '<p><b>' . sprintf(elgg_echo('embedvideo:parseerror'), 'youtube') . '</b></p>';
@@ -196,6 +195,7 @@ function videoembed_youtube_handler($url, $guid, $videowidth) {
  * @return string subdomain.youtube.com/v/hash
  */
 function videoembed_youtube_parse_url($url) {
+
 	if (strpos($url, 'feature=hd') != false) {
 		// this is high def with a different aspect ratio
 	}
@@ -210,20 +210,20 @@ function videoembed_youtube_parse_url($url) {
 	$domain = $matches[2] . $matches[3];
 	$path = $matches[4];
 
-	if (strpos($path, "embed/") > -1) {
-        if (!preg_match('/embed\/(.*?)[?]/', $path, $parts)) {
-            return;
-        }
+	$parts = parse_url($url);
+	parse_str($parts['query'], $vars);
+	$hash = $vars['v'];
 
-	    $hash = $parts[1];
-    } else {
-        $parts = parse_url($url);
-        parse_str($parts['query'], $vars);
-        $hash = $vars['v'];
-    }
-
-	//return $domain . 'v/' . $hash;
-	return $domain . 'embed/' . $hash;
+	if($hash == "" || $hash == null){
+		$url_f = explode("?",$url);
+		if (strpos($url_f[0], 'embed') !== false) {
+			$url_f2 = explode("embed/",$url_f[0]);
+			return $domain . 'embed/' . $url_f2[1];
+		}		
+	} else {
+		//return $domain . 'v/' . $hash;
+		return $domain . 'embed/' . $hash;
+	}
 
 }
 
@@ -233,11 +233,9 @@ function videoembed_youtube_parse_url($url) {
  * @param string $url
  * @return string youtube.com/v/hash
  */
-// function videoembed_youtube_shortener_parse_url($url) { // OBS by nikos
-function videoembed_youtube_shortener_parse_url($url, $guid, $videowidth) {
+function videoembed_youtube_shortener_parse_url($url) {
 	$path = parse_url($url, PHP_URL_PATH);
-	//$videourl = 'youtube.com/v' . $path; // OBS by nikos
-	$videourl = 'www.youtube.com/embed' . $path; // added by nikos
+	$videourl = 'youtube.com/v' . $path;
 
 	videoembed_calc_size($videowidth, $videoheight, 425/320, 24);
 
