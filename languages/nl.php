@@ -5,7 +5,7 @@
  *      Licence : GNU2
  */
 
-$dutch = array(
+return array(
 
 	/**
 	 * Menu items and titles
@@ -82,7 +82,10 @@ $dutch = array(
         'youtube:question1' => 'Do you want to view Youtube videos in content ?',
         'youtube:question2' => 'In which context should we show the search e.g (videos,blog,thewire) ?',
         'youtube:question3' => 'Put your Youtube developer key below, to enable search. A key can be requested at <a href="https://console.developers.google.com" target="_blank">Google developers</a>',
-
+        'youtube:question6' => 'Width of the Video in River view',
+        'youtube:question7' => 'Width of the Video in Summary view',
+        'youtube:question8' => 'Width of the Video in Full view',
+        'youtube:question9' => 'Width of the Video in Full view (Mobile)',
 	/**
 	 * Widget
 	 */
@@ -109,5 +112,3 @@ $dutch = array(
 	  'embedvideo:unrecognized' => 'Onbekende video',
 	  'embedvideo:parseerror' => 'Fout tijdens het verwerken van de video',
 );
-
-add_translation('nl', $dutch);

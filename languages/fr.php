@@ -5,7 +5,7 @@
  *      Licence : GNU2
  */
 
-$french = array(
+return array(
 
 	/**
 	 * Menu items and titles
@@ -43,7 +43,10 @@ $french = array(
 	'videos:river:annotate' => 'un commentaire sur ce video',
 	'videos:river:item' => 'un item',
 	
-	
+	 'youtube:question6' => 'Width of the Video in River view',
+	 'youtube:question7' => 'Width of the Video in Summary view',
+	 'youtube:question8' => 'Width of the Video in Full view',
+   'youtube:question9' => 'Width of the Video in Full view (Mobile)',
 	
 	'item:object:videos' => 'Videos',
 
@@ -81,5 +84,3 @@ $french = array(
 	  'embedvideo:unrecognized' => 'Video inconnue',
 	  'embedvideo:parseerror' => 'Une erreure dans le processuce du vidéo',
 );
-
-add_translation('fr', $french);

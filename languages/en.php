@@ -5,7 +5,7 @@
  *      Licence : GNU2
  */
 
-$english = array(
+return array(
 
 	/**
 	 * Menu items and titles
@@ -82,6 +82,10 @@ $english = array(
         'youtube:question3' => 'Put your Youtube developer key below, to enable search. A key can be requested at <a href="https://console.developers.google.com" target="_blank">Google developers</a>',
         'youtube:question4' => 'Put your Client ID used for this app below',
         'youtube:question5' => 'Put your Client Secret for this app below',
+        'youtube:question6' => 'Width of the Video in River view',
+        'youtube:question7' => 'Width of the Video in Summary view',
+        'youtube:question8' => 'Width of the Video in Full view',
+        'youtube:question9' => 'Width of the Video in Full view (Mobile)',
 
 	/**
 	 * Widget
@@ -109,5 +113,3 @@ $english = array(
 	  'embedvideo:unrecognized' => 'Unrecognised video',
 	  'embedvideo:parseerror' => 'Error processing the video',
 );
-
-add_translation('en', $english);

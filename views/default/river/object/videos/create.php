@@ -21,6 +21,7 @@ $guid = $object->guid;
 
 
 $vars['message'] = elgg_get_excerpt($object->description);
-$vars['attachments'] = videoembed_create_embed_object($video_url, $guid,130);
+$river_width = (int)elgg_get_plugin_setting('video_width_summary', 'videos');
+$vars['attachments'] = videoembed_create_embed_object($video_url, $guid, $river_width);
 
 echo elgg_view('river/elements/layout', $vars);

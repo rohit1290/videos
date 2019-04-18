@@ -42,5 +42,36 @@ echo elgg_echo('youtube:question5');
 
 echo elgg_view('input/text', array('name'=>'params[client_secret]', 'value'=> $client_secret));
 
-echo "</div>";
+echo "</div><br><br><div>";
 
+$video_width_river = $vars['entity']->video_width_river;
+
+echo elgg_echo('youtube:question6');
+
+echo elgg_view('input/text', array('name'=>'params[video_width_river]', 'value'=> $video_width_river));
+
+echo "</div><br><br><div>";
+
+$video_width_summary = $vars['entity']->video_width_summary;
+
+echo elgg_echo('youtube:question7');
+
+echo elgg_view('input/text', array('name'=>'params[video_width_summary]', 'value'=> $video_width_summary));
+
+echo "</div><br><br><div>";
+
+$video_width_full = $vars['entity']->video_width_full;
+
+echo elgg_echo('youtube:question8');
+
+echo elgg_view('input/text', array('name'=>'params[video_width_full]', 'value'=> $video_width_full));
+
+echo "</div><br><br><div>";
+
+$video_width_full_mob = $vars['entity']->video_width_full_mob;
+
+echo elgg_echo('youtube:question9');
+
+echo elgg_view('input/text', array('name'=>'params[video_width_full_mob]', 'value'=> $video_width_full_mob));
+
+echo "</div>";

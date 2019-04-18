@@ -82,9 +82,11 @@ HTML;
 	<div style="margin-left:10px;">
 	<?php 
         if($mobile) {
-        	echo videoembed_create_embed_object($video_url, $video->guid,280);
+					$full_width_mob = (int)elgg_get_plugin_setting('video_width_full_mob', 'videos');
+        	echo videoembed_create_embed_object($video_url, $video->guid, $full_width_mob);
         }else{
-        	echo videoembed_create_embed_object($video_url, $video->guid,450);
+					$full_width = (int)elgg_get_plugin_setting('video_width_full', 'videos');
+        	echo videoembed_create_embed_object($video_url, $video->guid, $full_width);
         }
 	?>
 	<br>
@@ -105,7 +107,8 @@ HTML;
 	if ($excerpt) {
 		$excerpt = "$excerpt";
 	}
-	$video_icon = videoembed_create_embed_object($video_url, $video->guid,70); 
+	$summary_width = (int)elgg_get_plugin_setting('video_width_summary', 'videos');
+	$video_icon = videoembed_create_embed_object($video_url, $video->guid, $summary_width); 
 
 	$content = "$excerpt";
 
@@ -120,7 +123,8 @@ HTML;
 	$list_body = elgg_view('object/elements/summary', $params);
 
 	if ($mobile == true || (elgg_get_context() == 'widgets')){
-		$video_icon = videoembed_create_embed_object($video_url, $video->guid,280);
+		$full_width_mob = (int)elgg_get_plugin_setting('video_width_full_mob', 'videos');
+		$video_icon = videoembed_create_embed_object($video_url, $video->guid, $full_width_mob);
 		echo elgg_view_image_block($video_icon,"");
 		echo elgg_view_image_block($list_body,"");
 	}else { 
