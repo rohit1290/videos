@@ -3,7 +3,6 @@
  * New videos river entry
  *	Licence : GNU2
  */
-elgg_load_library('elgg:videos:embed');
 
 $object = $vars['item']->getObjectEntity();
 $excerpt = elgg_get_excerpt($object->description);

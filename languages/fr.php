@@ -71,7 +71,7 @@ $french = array(
 	 * Error messages
 	 */
 
-	'videos:save:failed' => "Votre vidéo ne peut être sauvé. Assurez-vous que vous avez entré un titre et une description, puis essayez à nouveau.",
+	'videos:save:failed' => "Votre vidéo ne peut être sauvé. Assurez-vous que vous avez entré un titre et une url, puis essayez à nouveau.",
 	'videos:delete:failed' => "Votre vidéo ne peut être supprimé. S'il vous plaît essayez de nouveau.",
 	'videos:noembedurl' => 'URL du vidéo manquante',
 	 /**

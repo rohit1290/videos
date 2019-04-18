@@ -4,7 +4,6 @@
  *      @package Videos
  *      Licence : GNU2
  */
-elgg_load_library('elgg:videos');
 
 $page_owner = elgg_get_page_owner_entity();
 $max = (int) $vars['entity']->max_display;

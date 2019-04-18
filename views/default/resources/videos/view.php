@@ -6,7 +6,7 @@
  */
 
  
-$video = get_entity(get_input('guid'));
+$video = get_entity(elgg_extract('guid', $vars));
 
 $page_owner = elgg_get_page_owner_entity();
 

@@ -6,7 +6,7 @@
  */
 
 
-$video_guid = get_input('guid');
+$video_guid = elgg_extract('guid', $vars);
 $video = get_entity($video_guid);
 
 if (!elgg_instanceof($video, 'object', 'videos') || !$video->canEdit()) {

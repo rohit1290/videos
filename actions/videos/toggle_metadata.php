@@ -1,6 +1,6 @@
 <?php
 
-        gatekeeper();
+        elgg_gatekeeper();
 
         $guid = (int) get_input("guid");
         $metadata = get_input("metadata");

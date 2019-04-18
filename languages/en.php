@@ -99,7 +99,7 @@ $english = array(
 	 * Error messages
 	 */
 
-	'videos:save:failed' => "Your video could not be saved. Make sure you've entered a title and description and then try again.",
+	'videos:save:failed' => "Your video could not be saved. Make sure you've entered a title and video url and then try again.",
 	'videos:delete:failed' => "Your video could not be deleted. Please try again.",
 	'videos:noembedurl' => 'Video URL empty',
 	 /**

@@ -99,7 +99,7 @@ $dutch = array(
 	 * Error messages
 	 */
 
-	'videos:save:failed' => "Uw video kon niet worden opgeslagen, heeft u zowel een titel als beschrijving opgenomen ?",
+	'videos:save:failed' => "Uw video kon niet worden opgeslagen, heeft u zowel een titel als url opgenomen ?",
 	'videos:delete:failed' => "Uw video kon niet worden verwijderd.",
 	'videos:noembedurl' => 'Video URL leeg',
 	 /**

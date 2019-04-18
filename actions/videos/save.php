@@ -5,7 +5,7 @@
  *      Licence : GNU2
  */
 
-gatekeeper();
+elgg_gatekeeper();
 $title = strip_tags(get_input('title'));
 $description = get_input('description');
 $access_id = get_input('access_id');
@@ -23,11 +23,11 @@ $video_url = str_replace("http://", "https://", $video_url);
 $video_url = str_replace("/v/", "/embed/", $video_url);
 $video_url = str_replace("https://youtu.be/", "https://www.youtube.com/embed/", $video_url);
 
-
+$new = false;
 elgg_make_sticky_form('videos');
 
 
-if (!$title || !$description || !$video_url) {
+if (!$title || !$video_url) {
 	register_error(elgg_echo('videos:save:failed'));
 	forward(REFERER);
 }
@@ -57,16 +57,12 @@ if ($video->save()) {
 	system_message(elgg_echo('videos:save:success'));
 	//add to river only if new
 	if ($new) {
-		if (function_exists('elgg_get_version')) {
-			elgg_create_river_item(array(
-        	        	'view' => 'river/object/videos/create',
-                	        'action_type' => 'create',
-                        	'subject_guid' => elgg_get_logged_in_user_guid(),
-                        	'object_guid' => $video->guid,
-                         	));
-		}else{
-			add_to_river('river/object/videos/create','create', elgg_get_logged_in_user_guid(), $video->guid);
-		}
+		elgg_create_river_item([
+     	'view' => 'river/object/videos/create',
+      'action_type' => 'create',
+     	'subject_guid' => elgg_get_logged_in_user_guid(),
+     	'object_guid' => $video->guid,
+    ]);
 	}
 	forward($video->getURL());
 } else {

@@ -5,20 +5,20 @@
 if(!elgg_is_logged_in()){
 $tabs = array(
          'all' => array(
-                'title' => elgg_echo('all'),
-                'url' => "videos/all",
+                'text' => elgg_echo('all'),
+                'href' => "videos/all",
          ),
          'featured' => array(
-                'title' => elgg_echo('videos:featured'),
-                'url' => "videos/featured",
+                'text' => elgg_echo('videos:featured'),
+                'href' => "videos/featured",
          ),
          'mostviewed' => array(
-                'title' => elgg_echo('videos:mostviewed'),
-                'url' => "videos/mostviewed",
+                'text' => elgg_echo('videos:mostviewed'),
+                'href' => "videos/mostviewed",
          ),
          'playlist' => array(
-                'title' => elgg_echo('youtube:playlist:tab'),
-                'url' => "videos/playlist",
+                'text' => elgg_echo('youtube:playlist:tab'),
+                'href' => "videos/playlist",
          ),
    );
 
@@ -28,28 +28,28 @@ $user = elgg_get_logged_in_user_entity();
 
 $tabs = array(
          'all' => array(
-                'title' => elgg_echo('all'),
-                'url' => "videos/all",
+                'text' => elgg_echo('all'),
+                'href' => "videos/all",
          ),
 	'mine' => array(
-                'title' => elgg_echo('mine'),
-                'url' => "videos/owner/{$user->username}",
+                'text' => elgg_echo('mine'),
+                'href' => "videos/owner/{$user->username}",
                 ),
 	'friends'  => array(
-                'title' => elgg_echo('friends'),
-                'url' => "videos/friends/{$user->username}",
+                'text' => elgg_echo('friends'),
+                'href' => "videos/friends/{$user->username}",
                 ),
         'featured' => array(
-                'title' => elgg_echo('videos:featured'),
-                'url' => "videos/featured",
+                'text' => elgg_echo('videos:featured'),
+                'href' => "videos/featured",
          ),
          'mostviewed' => array(
-                'title' => elgg_echo('videos:mostviewed'),
-                'url' => "videos/mostviewed",
+                'text' => elgg_echo('videos:mostviewed'),
+                'href' => "videos/mostviewed",
          ),
          'playlist' => array(
-                'title' => elgg_echo('youtube:playlist:tab'),
-                'url' => "videos/playlist",
+                'text' => elgg_echo('youtube:playlist:tab'),
+                'href' => "videos/playlist",
          ),
    );
 }
