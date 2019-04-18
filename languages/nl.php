@@ -58,7 +58,7 @@ $dutch = array(
 	'videos:river:item' => 'een item',
 	'river:commented:object:videos' => 'een video',
 
-	'river:create:object:videos' => '%s heeft een video %s toegevoegd',
+	'river:object:videos:create' => '%s heeft een video %s toegevoegd',
 	'river:comment:object:videos' => '%s heeft een reactie gegeven op %s',
 	'videos:river:annotate' => 'een reactie op deze video',
 	'videos:river:item' => 'een item',

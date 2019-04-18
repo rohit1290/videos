@@ -38,7 +38,7 @@ $french = array(
 	'videos:river:item' => 'un item',
 	'river:commented:object:videos' => 'un video',
 
-	'river:create:object:videos' => '%s à ajouté un video %s',
+	'river:object:videos:create' => '%s à ajouté un video %s',
 	'river:comment:object:videos' => '%s à commenté sur un video %s',
 	'videos:river:annotate' => 'un commentaire sur ce video',
 	'videos:river:item' => 'un item',

@@ -56,7 +56,7 @@ $english = array(
 	'videos:river:item' => 'an item',
 	'river:commented:object:videos' => 'a video',
 
-	'river:create:object:videos' => '%s added a video %s',
+	'river:object:videos:create' => '%s added a video %s',
 	'river:comment:object:videos' => '%s commented on a video %s',
 	'videos:river:annotate' => 'a comment on this video',
 	'videos:river:item' => 'an item',
