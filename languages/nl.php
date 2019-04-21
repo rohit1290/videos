@@ -10,6 +10,7 @@ return array(
 	/**
 	 * Menu items and titles
 	 */
+	'collection:object:videos' => "Videos",
 	'videos' => "Videos",
 	'videos:add' => "Toevoegen video",
 	'videos:user' => "%s's videos",
