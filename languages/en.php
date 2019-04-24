@@ -91,7 +91,8 @@ return array(
 	/**
 	 * Widget
 	 */
-	'videos:widget:description' => "Display your latest videos.",
+	'widgets:videos:name' => 'Videos',
+	'widgets:videos:description' => "Display your latest videos.",
 
 	/**
 	 * Status messages

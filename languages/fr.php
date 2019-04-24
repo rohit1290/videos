@@ -62,7 +62,8 @@ return array(
 	/**
 	 * Widget
 	 */
-	'videos:widget:description' => "Affichez vos derniers videos.",
+	'widgets:videos:name' => 'Videos',
+ 	'widgets:videos:description' => "Affichez vos derniers videos.",
 
 	/**
 	 * Status messages

@@ -60,4 +60,9 @@ return [
 			'resource' => 'videos/owner',
 		],
 	],
+	'widgets' => [
+		'videos' => [
+			'context' => ['dashboard', 'profile', 'main', 'index'],
+		],
+	],
 ];

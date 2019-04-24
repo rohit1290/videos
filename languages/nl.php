@@ -90,7 +90,8 @@ return array(
 	/**
 	 * Widget
 	 */
-	'videos:widget:description' => "Toon uw laatste videos.",
+	'widgets:videos:name' => 'Videos',
+	'widgets:videos:description' => "Toon uw laatste videos.",
 
 	/**
 	 * Status messages
