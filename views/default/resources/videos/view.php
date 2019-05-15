@@ -5,8 +5,10 @@
  *      Licence : GNU2
  */
 
- 
-$video = get_entity(elgg_extract('guid', $vars));
+$guid = elgg_extract('guid', $vars);
+$video = get_entity($guid);
+
+elgg_entity_gatekeeper($guid, 'object', 'videos');
 
 $page_owner = elgg_get_page_owner_entity();
 
