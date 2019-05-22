@@ -12,7 +12,6 @@ $access_id = get_input('access_id');
 $tags = get_input('tags');
 $guid = get_input('guid');
 $share = get_input('share');
-$container_guid = get_input('container_guid', elgg_get_logged_in_user_guid());
 //set the action type to be embed in GPL Version. This will allow easier upgrade to commercial version
 $action_type =  'embed';
 $video_url = get_input('video_url');
@@ -35,7 +34,8 @@ if (!$title || !$video_url) {
 if ($guid == 0) {
 		$video = new ElggObject;
 		$video->subtype = "videos";
-		$video->container_guid = (int)get_input('container_guid', $_SESSION['user']->guid);
+		$video->container_guid = (int)get_input('container_guid', elgg_get_logged_in_user_guid());
+		$video->owner_guid = (int)elgg_get_logged_in_user_guid();
 		$video->variant = $action_type;
 		$new = true;
 	} else {
