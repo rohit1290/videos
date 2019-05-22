@@ -55,7 +55,11 @@ return [
 			'path' => '/videos/popular/{guid}',
 			'resource' => 'videos/popular',
 		],
-		'group:object:videos' => [
+		'group_all:object:videos' => [
+			'path' => '/videos/group/{guid}/all',
+			'resource' => 'videos/owner',
+		],
+		'group_owner:object:videos' => [
 			'path' => '/videos/group/{guid}/owner',
 			'resource' => 'videos/owner',
 		],
