@@ -10,7 +10,6 @@ if (!$item instanceof ElggRiverItem) {
 }
 
 $object = $item->getObjectEntity();
-$excerpt = 
 
 $video_url = $object->video_url;
 $video_url = str_replace("feature=player_embedded&amp;", "", $video_url);
