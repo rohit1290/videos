@@ -55,7 +55,7 @@ $object_link = elgg_view('output/url', array(
 	'is_trusted' => true,
 ));
 
-$summary = elgg_echo("river:create:object:thewire", array($subject_link, $object_link));
+$summary = elgg_echo("river:object:thewire:create", array($subject_link, $object_link));
 
 echo elgg_view('river/elements/layout', array(
 	'item' => $vars['item'],
