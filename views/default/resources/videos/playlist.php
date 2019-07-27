@@ -53,7 +53,7 @@ if ($client->getAccessToken()) {
 	 
       foreach ($playlistItemsResponse['items'] as $playlistItem) {
 	
-	elgg_load_js('addthis_widget');
+	// elgg_load_js('addthis_widget');
 	$title = $playlistItem['snippet']['title'];	
 	$desc =  urldecode(html_entity_decode(strip_tags($playlistItem['snippet']['description'])));
 	$video_url = "https://www.youtube.com/watch?v=" . $playlistItem['snippet']['resourceId']['videoId'];	

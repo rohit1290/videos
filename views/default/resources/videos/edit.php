@@ -9,7 +9,7 @@
 $video_guid = elgg_extract('guid', $vars);
 $video = get_entity($video_guid);
 
-if (!elgg_instanceof($video, 'object', 'videos') || !$video->canEdit()) {
+if ($video->getSubtype != 'videos') || !$video->canEdit()) {
 	register_error(elgg_echo('videos:unknown_video'));
 	forward(REFERRER);
 }

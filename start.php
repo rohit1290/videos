@@ -73,7 +73,8 @@ function videos_init() {
 /**
  * Process the Elgg views for a matching video URL
 */
-function videos_view_filter($hook, $entity_type, $returnvalue, $params){
+function videos_view_filter(\Elgg\Hook $hook) {
+  $returnvalue = $hook->getValue();
 	$patterns = array(	'/(((https?:\/\/)?)|(^.\/))(((www.)?)|(^.\/))youtube\.com\/watch[?]v=([^\[\]()<.,\s\n\t\r]+)/i',
 						'/(((https?:\/\/)?)|(^.\/))(((www.)?)|(^.\/))youtu\.be\/([^\[\]()<.,\s\n\t\r]+)/i',
 						'/(https?:\/\/)(www\.)?(vimeo\.com\/groups)(.*)(\/videos\/)([0-9]*)/i',
@@ -100,10 +101,10 @@ function videos_view_filter($hook, $entity_type, $returnvalue, $params){
  * @param ElggObject $entity Page object
  * @return string
  */
-function videos_url_handler($hook, $type, $url, $params) {
-	$entity = $params['entity'];
+function videos_url_handler(\Elgg\Hook $hook) {
+	$entity = $hook->getEntityParam();
 
-        if (!elgg_instanceof($entity, 'object', 'videos')) {
+        if ($entity->getSubtype != 'videos') {
                 return;
         }
 
@@ -113,14 +114,12 @@ function videos_url_handler($hook, $type, $url, $params) {
 
 /**
  * Add a menu item to an ownerblock
- * 
- * @param string $hook
- * @param string $type
- * @param array  $return
- * @param array  $params
  */
-function videos_owner_block_menu($hook, $type, $return, $params) {
-	if (elgg_instanceof($params['entity'], 'user')) {
+function videos_owner_block_menu(\Elgg\Hook $hook) {
+  $return = $hook->getValue();
+  $params = $hook->getParams();
+  
+	if ($params['entity'] instanceof ElggUser) {
 		$url = "videos/owner/{$params['entity']->username}";
 		$item = new ElggMenuItem('videos', elgg_echo('videos'), $url);
 		$return[] = $item;
@@ -136,13 +135,10 @@ function videos_owner_block_menu($hook, $type, $return, $params) {
 
 /**
  * Returns the body of a notification message
- *
- * @param string $hook
- * @param string $entity_type
- * @param string $returnvalue
- * @param array  $params
  */
-function videos_notify_message($hook, $entity_type, $returnvalue, $params) {
+function videos_notify_message(\Elgg\Hook $hook) {
+  $params = $hook->getParams();
+  
 	$entity = $params['entity'];
 	$to_entity = $params['to_entity'];
 	$method = $params['method'];
@@ -167,7 +163,8 @@ function videos_notify_message($hook, $entity_type, $returnvalue, $params) {
 	return null;
 }
 
-function videos_page_menu($hook, $type, $return, $params) {
+function videos_page_menu(\Elgg\Hook $hook) {
+  $return = $hook->getValue();
         // only show buttons in videos pages. Changed to videos1 to remove all menus
         //if (elgg_in_context('videos')) {
         if (elgg_in_context('videos1')) {
@@ -199,8 +196,8 @@ function videos_page_menu($hook, $type, $return, $params) {
         }
 }
 
-function videos_entity_menu_setup($hook, $entity_type, $returnvalue, $params){
-  $result = $returnvalue;
+function videos_entity_menu_setup(\Elgg\Hook $hook){
+  $result = $hook->getValue();
 		
 	if (elgg_in_context("widgets")) {
     return $result;
@@ -209,7 +206,7 @@ function videos_entity_menu_setup($hook, $entity_type, $returnvalue, $params){
 
   if(!empty($params) && is_array($params)){
   	// $page_owner = elgg_get_page_owner_entity();
-    if(($entity = elgg_extract("entity", $params)) && elgg_instanceof($entity, "object", "videos")){
+    if(($entity = elgg_extract("entity", $params)) && $entity->getSubtype === "videos") {
        if(elgg_is_admin_logged_in()){
          // feature link
          if(!empty($entity->featured)){

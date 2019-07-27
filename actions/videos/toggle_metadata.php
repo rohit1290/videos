@@ -9,7 +9,7 @@
 
         if(!empty($guid) && !empty($metadata)){
                 if(($entity = get_entity($guid)) && $entity->canEdit()){
-                        if(elgg_instanceof($entity, "object", "videos")){
+                        if($entity->getSubtype === "videos"){
 			   if(elgg_is_admin_logged_in()){
                                 $old = $entity->$metadata;
 
