@@ -16,7 +16,7 @@
 	<suggests>
 		<type>plugin</type>
 		<name>thewire</name>
-	</suggests>	
+	</suggests>
 	<suggests>
 		<type>plugin</type>
 		<name>views_counter</name>

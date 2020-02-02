@@ -74,7 +74,7 @@ return array(
 	'videos:no_title' => 'No title',
 	'videos:file' => 'Select the video file to upload',
 
-	//Youtube  
+	//Youtube
         'youtube' => 'Youtube',
         'youtube:playlist' => 'Your playlist on Youtube',
         'youtube:playlist:tab' => 'Youtube Playlist',

@@ -35,7 +35,7 @@ function videos_get_page_content_featured($guid = NULL) {
                 $return['content'] = $list;
 
                 $return['title'] = elgg_echo('videos:title:featured');
-		
+
 		elgg_push_breadcrumb($crumbs_title, "Featured");
 
                 elgg_register_title_button();
@@ -43,7 +43,7 @@ function videos_get_page_content_featured($guid = NULL) {
                 return $return;
 }
 
- 
+
 function videos_prepare_form_vars($video = null) {
 	// input names => defaults
 	$values = array(

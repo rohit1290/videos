@@ -27,7 +27,7 @@ $content = elgg_list_entities_from_annotation_calculation($options);
 
 $title = elgg_echo('videos:mostviewed');
 
-$body = elgg_view_layout('content', array(
+$body = elgg_view_layout('default', array(
 	'filter_context' => 'Most Viewed',
 	'content' => $content,
 	'title' => $title,

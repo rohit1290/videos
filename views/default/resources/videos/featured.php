@@ -23,7 +23,7 @@ $content = elgg_list_entities($options);
 
 $title = elgg_echo('videos:featured');
 
-$body = elgg_view_layout('content', array(
+$body = elgg_view_layout('default', array(
 	'filter_context' => 'Featured',
 	'content' => $content,
 	'title' => $title,

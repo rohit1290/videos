@@ -25,24 +25,24 @@ function videos_init() {
 	require_once __DIR__ . '/lib/videos.php';
 	require_once __DIR__ . '/lib/embed_video.php';
 	// require_once __DIR__ . '/lib/youtube_functions.php';
-  
+
 	//extend owner block menu
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'videos_owner_block_menu');
 
 	//Add menu's in sidebar
 	elgg_register_plugin_hook_handler('register', 'menu:page', 'videos_page_menu');
-	
+
 	$context =  elgg_get_context();
 	$contexts = elgg_get_plugin_setting('search_contexts','videos');
 	$contexts = explode(",", $contexts);
-	
+
   if(in_array($context, $contexts))  {
     elgg_extend_view('page/elements/sidebar', 'page/elements/search','400');
   }
 
 	// get items in video menu
   elgg_register_plugin_hook_handler("register", "menu:entity", "videos_entity_menu_setup");
-	
+
 	elgg_extend_view('css/elgg', 'videos/css');
 
 	if (function_exists('elgg_get_version')) {
@@ -57,16 +57,16 @@ function videos_init() {
 	elgg_register_plugin_hook_handler('entity:url', 'object', 'videos_url_handler');
 
 	elgg_register_entity_type('object', 'videos');
-  
+
   elgg()->group_tools->register('videos', [
 		'default_on' => true,
 		'label' => elgg_echo('videos:enablevideos'),
 	]);
-	
+
   $views = array('output/longtext','output/plaintext');
 	foreach($views as $view){
 		elgg_register_plugin_hook_handler("view", $view, "videos_view_filter", 500);
-	}	
+	}
 }
 
 
@@ -88,12 +88,12 @@ function videos_view_filter(\Elgg\Hook $hook) {
 			foreach ($patterns as $pattern){
 				if (preg_match($pattern, strip_tags($match[2])) > 0){
 					$returnvalue = str_replace($match[0], videoembed_create_embed_object(strip_tags($match[2]), uniqid('videos_embed_'), 350), $returnvalue);
-				}				
+				}
 			}
 		}
 	}
 	return $returnvalue;
-}	
+}
 
 /**
  * Override the videos url
@@ -118,7 +118,7 @@ function videos_url_handler(\Elgg\Hook $hook) {
 function videos_owner_block_menu(\Elgg\Hook $hook) {
   $return = $hook->getValue();
   $params = $hook->getParams();
-  
+
 	if ($params['entity'] instanceof ElggUser) {
 		$url = "videos/owner/{$params['entity']->username}";
 		$item = new ElggMenuItem('videos', elgg_echo('videos'), $url);
@@ -138,7 +138,7 @@ function videos_owner_block_menu(\Elgg\Hook $hook) {
  */
 function videos_notify_message(\Elgg\Hook $hook) {
   $params = $hook->getParams();
-  
+
 	$entity = $params['entity'];
 	$to_entity = $params['to_entity'];
 	$method = $params['method'];
@@ -198,7 +198,7 @@ function videos_page_menu(\Elgg\Hook $hook) {
 
 function videos_entity_menu_setup(\Elgg\Hook $hook){
   $result = $hook->getValue();
-		
+
 	if (elgg_in_context("widgets")) {
     return $result;
   }
@@ -224,7 +224,7 @@ function videos_entity_menu_setup(\Elgg\Hook $hook){
             "icon" => 'star'
          );
          $result[] = ElggMenuItem::factory($options);
-  				
+
       }
     }
   }

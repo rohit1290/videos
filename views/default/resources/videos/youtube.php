@@ -2,7 +2,7 @@
 $site_name = elgg_get_site_entity()->name;
 
 if ($_GET['q'] && $_GET['maxResults']) {
-  
+
    //Maximize the number of results whatever a user enters in the URL
 	if ($_GET['maxResults'] > "10") {
 		$_GET['maxResults'] = "10";
@@ -34,44 +34,44 @@ if ($_GET['q'] && $_GET['maxResults']) {
     $playlists = '';
 
     foreach ($searchResponse['items'] as $searchResult) {
-	
-	$title = $searchResult['snippet']['title'];	
+
+	$title = $searchResult['snippet']['title'];
 	$title = trim(preg_replace('/ +/', ' ', preg_replace('/[^A-Za-z0-9\_|+.-]/', ' ', urldecode(html_entity_decode(strip_tags($title))))));
 	$desc = $searchResult['snippet']['description'];
 	$desc = trim(preg_replace('/ +/', ' ', preg_replace('/[^A-Za-z0-9\_|+.-]/', ' ', urldecode(html_entity_decode(strip_tags($desc))))));
-	$video_url = "https://www.youtube.com/watch?v=" . $searchResult['id']['videoId'];	
-	
-	
+	$video_url = "https://www.youtube.com/watch?v=" . $searchResult['id']['videoId'];
+
+
 	if(elgg_is_logged_in()) {
-	
+
       switch ($searchResult['id']['kind']) {
       case 'youtube#video':
 	  $videos .= "</br><a href='/videos/add/$user->guid?title=$title&desc=$desc&video_url=$video_url'>Add this video:</a> ". $searchResult['snippet']['title'];
       $videos .= "</br>";
 	  $videos .=  "<iframe width='450' height='320' src='https://www.youtube.com/embed/";
-      $videos .= $searchResult['id']['videoId'];  
+      $videos .= $searchResult['id']['videoId'];
 	  $videos .= "' frameborder='0'></iframe>";
 	  $videos .= "</br>";
 	  $videos .= $searchResult['snippet']['title'];
 	  $videos .= "</a></br>";
-	  
+
       break;
       }
     }else{
-	
+
 	  switch ($searchResult['id']['kind']) {
       case 'youtube#video':
 	  $videos .= "</br>";
 	  $videos .= $searchResult['snippet']['title'];
 	  $videos .=  "<iframe width='200' height='150' src='https://www.youtube.com/embed/";
-      $videos .= $searchResult['id']['videoId'];  
+      $videos .= $searchResult['id']['videoId'];
 	  $videos .= "' frameborder='0'></iframe>";
 	  $videos .= "</a></br>";
       break;
       }
 	  }
 	  }
-	  
+
 
   } catch (Google_ServiceException $e) {
     $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',
@@ -92,7 +92,7 @@ $content = $videos;
 
 $title = elgg_echo('videos:youtube');
 
-$body = elgg_view_layout('content', array(
+$body = elgg_view_layout('default', array(
         'filter_context' => 'all',
         'content' => $content,
         'title' => $title,

@@ -23,7 +23,7 @@ $form_vars = array();
 $body_vars = videos_prepare_form_vars($video);
 $content = elgg_view_form('videos/save', $form_vars, $body_vars);
 
-$body = elgg_view_layout('content', array(
+$body = elgg_view_layout('default', array(
 	'filter' => '',
 	'content' => $content,
 	'title' => $title,

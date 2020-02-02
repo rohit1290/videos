@@ -27,7 +27,7 @@ elgg_push_breadcrumb($title);
 $content = elgg_view_entity($video, array('full_view' => true));
 $content .= elgg_view_comments($video);
 
-$body = elgg_view_layout('content', array(
+$body = elgg_view_layout('default', array(
 	'content' => $content,
 	'title' => $title,
 	'filter_override' => elgg_view('videos/nav', array('selected' => $vars['page'])),

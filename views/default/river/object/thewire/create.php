@@ -1,13 +1,13 @@
 <?php
 /**
- * Youtube viewer 
+ * Youtube viewer
  */
 
 $object = $vars['item']->getObjectEntity();
-		$youtube = elgg_get_plugin_setting('youtube', 'videos'); 
+		$youtube = elgg_get_plugin_setting('youtube', 'videos');
 if ($youtube == 1)
 {
-		
+
 $excerpt = strip_tags($object->description);
 $excerpt = str_replace("feature=player_embedded&amp;", "", $excerpt);
 $excerpt = str_replace("feature=player_detailpage&amp;", "", $excerpt);
@@ -36,7 +36,7 @@ else
 {
     $excerpt = strip_tags($object->description);
 	$excerpt = thewire_filter($excerpt);
-    
+
 }
 
 

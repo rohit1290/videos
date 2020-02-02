@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if(elgg_get_plugin_setting('video_width_river', 'videos') == null){
   elgg_set_plugin_setting('video_width_river', '70', 'videos');
@@ -13,4 +13,4 @@ if(elgg_get_plugin_setting('video_width_full_mob', 'videos') == null){
   elgg_set_plugin_setting('video_width_full_mob', '280', 'videos');
 }
 
- ?>
+ 

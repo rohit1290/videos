@@ -76,9 +76,9 @@ function videoembed_create_embed_object($url, $guid, $videowidth=0) {
 function videoembed_add_css($guid, $width, $height) {
 	$videocss = "
       <style type=\"text/css\">
-        #embedvideo{$guid} { 
+        #embedvideo{$guid} {
           height: {$height}px;
-          width: {$width}px; 
+          width: {$width}px;
         }
       </style>";
 
@@ -219,7 +219,7 @@ function videoembed_youtube_parse_url($url) {
 		if (strpos($url_f[0], 'embed') !== false) {
 			$url_f2 = explode("embed/",$url_f[0]);
 			return $domain . 'embed/' . $url_f2[1];
-		}		
+		}
 	} else {
 		//return $domain . 'v/' . $hash;
 		return $domain . 'embed/' . $hash;
@@ -552,7 +552,7 @@ function videoembed_veoh_parse_embed($url) {
 	//echo $hash;
 
 	return $hash;
-} 
+}
 
 /**
  * main dm interface
@@ -618,7 +618,7 @@ function videoembed_dm_parse_embed($url) {
 	//echo $hash;
 
 	return $hash;
-} 
+}
 
 /**
  * main blip interface

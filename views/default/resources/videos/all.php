@@ -22,7 +22,7 @@ $content = elgg_list_entities(array(
 
 $title = elgg_echo('videos:everyone');
 
-$body = elgg_view_layout('content', array(
+$body = elgg_view_layout('default', array(
 	'filter_context' => 'all',
 	'content' => $content,
 	'title' => $title,

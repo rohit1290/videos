@@ -4,7 +4,7 @@
 
         $guid = (int) get_input("guid");
         $metadata = get_input("metadata");
-	
+
 	$video = get_entity($guid);
 
         if(!empty($guid) && !empty($metadata)){

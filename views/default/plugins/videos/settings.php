@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $youtube = $vars['entity']->youtube;
 
