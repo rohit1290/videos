@@ -1,75 +1,4 @@
-<?php
-/**
- * Elgg videos plugin
- *	@package Elgg-videos
- */
-
-require_once 'vendors/Mobile_Detect.php';
-
-elgg_register_event_handler('init', 'system', 'videos_init');
-/**
- * video init
- */
-function videos_init() {
-
-  // add a site navigation item
-  $options = array(
-    "name" => "videos",
-    "text" => elgg_echo('videos'),
-    "href" => elgg_get_site_url() . 'videos/all',
-    "icon" => 'video-camera'
-  );
-  $item = ElggMenuItem::factory($options);
-  elgg_register_menu_item('site', $item);
-
-	require_once __DIR__ . '/lib/videos.php';
-	require_once __DIR__ . '/lib/embed_video.php';
-	// require_once __DIR__ . '/lib/youtube_functions.php';
-
-	//extend owner block menu
-	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'videos_owner_block_menu');
-
-	//Add menu's in sidebar
-	elgg_register_plugin_hook_handler('register', 'menu:page', 'videos_page_menu');
-
-	$context =  elgg_get_context();
-	$contexts = elgg_get_plugin_setting('search_contexts','videos');
-	$contexts = explode(",", $contexts);
-
-  if(in_array($context, $contexts))  {
-    elgg_extend_view('page/elements/sidebar', 'page/elements/search','400');
-  }
-
-	// get items in video menu
-  elgg_register_plugin_hook_handler("register", "menu:entity", "videos_entity_menu_setup");
-
-	elgg_extend_view('css/elgg', 'videos/css');
-
-	if (function_exists('elgg_get_version')) {
-    elgg_register_notification_event('object', 'videos');
-  } else {
-    register_notification_object('object', 'videos', elgg_echo('videos:new'));
-  }
-
-	elgg_register_plugin_hook_handler('notify:entity:message', 'object', 'videos_notify_message');
-
-  // Register a URL handler for video posts
-	elgg_register_plugin_hook_handler('entity:url', 'object', 'videos_url_handler');
-
-	elgg_register_entity_type('object', 'videos');
-
-  elgg()->group_tools->register('videos', [
-		'default_on' => true,
-		'label' => elgg_echo('videos:enablevideos'),
-	]);
-
-  $views = array('output/longtext','output/plaintext');
-	foreach($views as $view){
-		elgg_register_plugin_hook_handler("view", $view, "videos_view_filter", 500);
-	}
-}
-
-
+<?php 
 /**
  * Process the Elgg views for a matching video URL
 */
@@ -231,6 +160,3 @@ function videos_entity_menu_setup(\Elgg\Hook $hook){
 
    return $result;
 }
-
-
-

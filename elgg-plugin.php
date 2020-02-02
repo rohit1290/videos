@@ -1,4 +1,8 @@
 <?php
+require_once __DIR__ . '/vendors/Mobile_Detect.php';
+require_once __DIR__ . '/lib/videos.php';
+require_once __DIR__ . '/lib/embed_video.php';
+require_once __DIR__ . '/lib/hooks.php';
 
 return [
 	'actions' => [
