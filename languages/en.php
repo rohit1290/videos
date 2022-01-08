@@ -12,6 +12,8 @@ return array(
 	 */
 	'collection:object:videos' => "Videos",
 	'videos' => "Videos",
+	'add:object:videos' => "Add video",
+	'edit:object:videos' => "Edit video",
 	'videos:add' => "Add video",
 	'videos:user' => "%s's videos",
 	'videos:embed' => "Embed video",

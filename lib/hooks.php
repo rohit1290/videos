@@ -1,8 +1,9 @@
-<?php 
+<?php
 /**
  * Process the Elgg views for a matching video URL
 */
 function videos_view_filter(\Elgg\Hook $hook) {
+
   $returnvalue = $hook->getValue();
 	$patterns = array(	'/(((https?:\/\/)?)|(^.\/))(((www.)?)|(^.\/))youtube\.com\/watch[?]v=([^\[\]()<.,\s\n\t\r]+)/i',
 						'/(((https?:\/\/)?)|(^.\/))(((www.)?)|(^.\/))youtu\.be\/([^\[\]()<.,\s\n\t\r]+)/i',
@@ -31,6 +32,7 @@ function videos_view_filter(\Elgg\Hook $hook) {
  * @return string
  */
 function videos_url_handler(\Elgg\Hook $hook) {
+    
 	$entity = $hook->getEntityParam();
 
         if ($entity->getSubtype != 'videos') {
@@ -45,18 +47,18 @@ function videos_url_handler(\Elgg\Hook $hook) {
  * Add a menu item to an ownerblock
  */
 function videos_owner_block_menu(\Elgg\Hook $hook) {
+
   $return = $hook->getValue();
   $params = $hook->getParams();
-
-	if ($params['entity'] instanceof ElggUser) {
-		$url = "videos/owner/{$params['entity']->username}";
-		$item = new ElggMenuItem('videos', elgg_echo('videos'), $url);
-		$return[] = $item;
-	} else {
-		if ($params['entity']->videos_enable != 'no') {
+  $entity = elgg_extract('entity', $params);
+  
+	if ($entity instanceof ElggUser) {
+		$url = "videos/owner/{$entity->username}";
+		$return[] = new ElggMenuItem('videos', elgg_echo('videos'), $url);
+	} else if ($entity instanceof ElggGroup) {
+		if ($entity->videos_enable != 'no') {
 			$url = "videos/group/{$params['entity']->guid}/owner";
-			$item = new ElggMenuItem('videos', elgg_echo('videos:group'), $url);
-			$return[] = $item;
+			$return[] = new ElggMenuItem('videos', elgg_echo('videos:group'), $url);
 		}
 	}
 	return $return;
@@ -66,9 +68,10 @@ function videos_owner_block_menu(\Elgg\Hook $hook) {
  * Returns the body of a notification message
  */
 function videos_notify_message(\Elgg\Hook $hook) {
+
   $params = $hook->getParams();
 
-	$entity = $params['entity'];
+	$entity = $hook->getEntityParam();
 	$to_entity = $params['to_entity'];
 	$method = $params['method'];
 	if (($entity instanceof ElggEntity) && ($entity->getSubtype() == 'videos')) {
@@ -93,10 +96,11 @@ function videos_notify_message(\Elgg\Hook $hook) {
 }
 
 function videos_page_menu(\Elgg\Hook $hook) {
+
   $return = $hook->getValue();
         // only show buttons in videos pages. Changed to videos1 to remove all menus
         //if (elgg_in_context('videos')) {
-        if (elgg_in_context('videos1')) {
+        if (elgg_in_context('videos')) {
              if (elgg_is_logged_in()) {
                         $user = elgg_get_logged_in_user_entity();
                         $page_owner = elgg_get_page_owner_entity();
@@ -125,38 +129,36 @@ function videos_page_menu(\Elgg\Hook $hook) {
         }
 }
 
-function videos_entity_menu_setup(\Elgg\Hook $hook){
+function videos_entity_menu_setup(\Elgg\Hook $hook) {
+
   $result = $hook->getValue();
 
 	if (elgg_in_context("widgets")) {
     return $result;
   }
+  
+  $entity = $hook->getEntityParam();
 
+  if($entity->getSubtype === "videos") {
+     if(elgg_is_admin_logged_in()){
+       // feature link
+       if(!empty($entity->featured)){
+          $text = elgg_echo("videos:toggle:unfeature");
+       } else {
+          $text = elgg_echo("videos:toggle:feature");
+       }
 
-  if(!empty($params) && is_array($params)){
-  	// $page_owner = elgg_get_page_owner_entity();
-    if(($entity = elgg_extract("entity", $params)) && $entity->getSubtype === "videos") {
-       if(elgg_is_admin_logged_in()){
-         // feature link
-         if(!empty($entity->featured)){
-            $text = elgg_echo("videos:toggle:unfeature");
-         } else {
-            $text = elgg_echo("videos:toggle:feature");
-         }
-
-         $options = array(
-            "name" => "featured",
-            "text" => $text,
-            "href" => elgg_get_site_url() . "action/videos/toggle_metadata?guid=" . $entity->guid . "&metadata=featured",
-            "is_action" => true,
-            "priority" => 175,
-            "icon" => 'star'
-         );
-         $result[] = ElggMenuItem::factory($options);
-
-      }
+       $options = array(
+          "name" => "featured",
+          "text" => $text,
+          "href" => elgg_get_site_url() . "action/videos/toggle_metadata?guid=" . $entity->guid . "&metadata=featured",
+          "is_action" => true,
+          "priority" => 175,
+          "icon" => 'star'
+       );
+       $result[] = ElggMenuItem::factory($options);
+     }
     }
-  }
 
    return $result;
 }

@@ -20,20 +20,20 @@
                                 }
 
                                 if($old != $entity->$metadata){
-                                        system_message(elgg_echo("videos:action:toggle_metadata:success"));
+                                        elgg_ok_response('', elgg_echo("videos:action:toggle_metadata:success"));
                                 } else {
-                                        register_error(elgg_echo("videos:action:toggle_metadata:error"));
+                                        elgg_error_response(elgg_echo("videos:action:toggle_metadata:error"));
                                 }
                         } else {
-                                register_error(elgg_echo("InvalidClassException:NotValidElggStar", array($guid, "Videos")));
+                                elgg_error_response(elgg_echo("InvalidClassException:NotValidElggStar", array($guid, "Videos")));
                         }
                 } else {
-                        //register_error(elgg_echo("InvalidParameterException:GUIDNotFound", array($guid)));
-                        register_error(elgg_echo("professional:onlyowncontent", array($guid)));
+                        //elgg_error_response(elgg_echo("InvalidParameterException:GUIDNotFound", array($guid)));
+                        elgg_error_response(elgg_echo("professional:onlyowncontent", array($guid)));
                 }
         } else {
-                register_error(elgg_echo("InvalidParameterException:MissingParameter"));
+                elgg_error_response(elgg_echo("InvalidParameterException:MissingParameter"));
         }
 }
-        forward(REFERER);
+        return elgg_redirect_response(REFERER);
 

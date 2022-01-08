@@ -8,7 +8,7 @@
 elgg_pop_breadcrumb();
 elgg_push_breadcrumb(elgg_echo('videos'), 'videos/featured');
 
-elgg_register_title_button();
+elgg_register_title_button('videos', 'add', 'object', 'videos');
 
 $offset = (int)get_input('offset', 0);
 $content = elgg_list_entities(array(

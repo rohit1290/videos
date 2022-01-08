@@ -10,8 +10,8 @@ $video_guid = elgg_extract('guid', $vars);
 $video = get_entity($video_guid);
 
 if ($video->getSubtype != 'videos') || !$video->canEdit()) {
-	register_error(elgg_echo('videos:unknown_video'));
-	forward(REFERRER);
+	elgg_error_response(elgg_echo('videos:unknown_video'));
+	return elgg_redirect_response(REFERRER);
 }
 
 $page_owner = elgg_get_page_owner_entity();

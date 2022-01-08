@@ -11,14 +11,14 @@ $video = get_entity($guid);
 if ($video->getSubtype === 'videos' && $video->canEdit()) {
 	$container = $video->getContainerEntity();
 	if ($video->delete()) {
-		system_message(elgg_echo("videos:delete:success"));
+		elgg_ok_response('', elgg_echo("videos:delete:success"));
 		if ($container instanceof ElggGroup) {
-			forward("videos/group/$container->guid/owner");
+			return elgg_redirect_response("videos/group/$container->guid/owner");
 		} else {
-			forward("videos/owner/$container->username");
+			return elgg_redirect_response("videos/owner/$container->username");
 		}
 	}
 }
 
-register_error(elgg_echo("videos:delete:failed"));
-forward(REFERER);
+elgg_error_response(elgg_echo("videos:delete:failed"));
+return elgg_redirect_response(REFERER);

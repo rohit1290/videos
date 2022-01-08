@@ -40,10 +40,10 @@ class Videos extends DefaultPluginBootstrap {
 
   	elgg_extend_view('css/elgg', 'videos/css');
 
-  	if (function_exists('elgg_get_version')) {
+  	if (function_exists('elgg_get_release')) {
       elgg_register_notification_event('object', 'videos');
     } else {
-      register_notification_object('object', 'videos', elgg_echo('videos:new'));
+      elgg_register_notification_event('object', 'videos', array('create'));
     }
 
   	elgg_register_plugin_hook_handler('notify:entity:message', 'object', 'videos_notify_message');
@@ -66,16 +66,16 @@ class Videos extends DefaultPluginBootstrap {
 	
 	public function activate() {
     if(elgg_get_plugin_setting('video_width_river', 'videos') == null){
-      elgg_set_plugin_setting('video_width_river', '70', 'videos');
+			elgg_get_plugin_from_id('videos')->setSetting('video_width_river', '70');
     }
     if(elgg_get_plugin_setting('video_width_summary', 'videos') == null){
-      elgg_set_plugin_setting('video_width_summary', '130', 'videos');
+			elgg_get_plugin_from_id('videos')->setSetting('video_width_summary', '130');
     }
     if(elgg_get_plugin_setting('video_width_full', 'videos') == null){
-      elgg_set_plugin_setting('video_width_full', '450', 'videos');
+			elgg_get_plugin_from_id('videos')->setSetting('video_width_full', '450');
     }
     if(elgg_get_plugin_setting('video_width_full_mob', 'videos') == null){
-      elgg_set_plugin_setting('video_width_full_mob', '280', 'videos');
+			elgg_get_plugin_from_id('videos')->setSetting('video_width_full_mob', '280');
     }
   }
 

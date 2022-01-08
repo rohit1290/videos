@@ -1,16 +1,18 @@
 {
-  "name": "centillien/videos",
-  "description": "Videos functionality in Elgg",
-  "type": "elgg-plugin",
-  "keywords": [
-    "elgg",
-    "plugin"
-  ],
-  "license": "GPL-2.0",
-  "authors": [
-    {
-      "name": "Gerard Kanters",
-      "email": "gkanters@netcare.nl"
-    }
-  ]
+	"name": "videos",
+	"description": "Adds the ability for users to search/ upload/embed videos to elgg sites. Uploaded videos must be hosted on Youtube.com or Facebook.",
+	"homepage": "http://www.campuskarma.in/",
+	"type": "elgg-plugin",
+	"keywords": ["elgg", "plugin"],
+	"license": "Private Use",
+	"support": {
+		"source": "https://github.com/rohit1290/videos",
+		"issues": "https://github.com/rohit1290/videos/issues"
+	},
+	"require": {
+		"composer/installers": "^1.0.8"
+	},
+	"conflict": {
+		"elgg/elgg": "<4.0"
+	}
 }

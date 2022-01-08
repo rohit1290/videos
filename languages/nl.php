@@ -12,6 +12,8 @@ return array(
 	 */
 	'collection:object:videos' => "Videos",
 	'videos' => "Videos",
+	'add:object:videos' => "Toevoegen video",
+	'edit:object:videos' => "Wijzig video",
 	'videos:add' => "Toevoegen video",
 	'videos:user' => "%s's videos",
 	'videos:embed' => "Invoegen video",
@@ -76,7 +78,7 @@ return array(
 	'videos:no_title' => 'Geen titel',
 	'videos:file' => 'Selecteer het video bestand om te uploaden',
 
-	//Youtube  
+	//Youtube
         'youtube' => 'Youtube',
         'youtube:playlist' => 'Uw playlist op Youtube',
         'youtube:playlist:tab' => 'Youtube Playlist',

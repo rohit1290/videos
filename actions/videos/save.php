@@ -27,13 +27,13 @@ elgg_make_sticky_form('videos');
 
 
 if (!$title || !$video_url) {
-	register_error(elgg_echo('videos:save:failed'));
-	forward(REFERER);
+	elgg_error_response(elgg_echo('videos:save:failed'));
+	return elgg_redirect_response(REFERER);
 }
 
 if ($guid == 0) {
 		$video = new ElggObject;
-		$video->subtype = "videos";
+		$video->setSubtype('videos');
 		$video->container_guid = (int)get_input('container_guid', elgg_get_logged_in_user_guid());
 		$video->owner_guid = (int)elgg_get_logged_in_user_guid();
 		$video->variant = $action_type;
@@ -41,8 +41,8 @@ if ($guid == 0) {
 	} else {
 		$video = get_entity($guid);
 		if (!$video->canEdit()) {
-			system_message(elgg_echo('videos:save:failed'));
-			forward(REFERRER);
+			elgg_ok_response('', elgg_echo('videos:save:failed'));
+			return elgg_redirect_response(REFERRER);
 		}
 	}
 	$tagarray = string_to_tag_array($tags);
@@ -54,7 +54,7 @@ if ($guid == 0) {
 
 if ($video->save()) {
 	elgg_clear_sticky_form('videos');
-	system_message(elgg_echo('videos:save:success'));
+	elgg_ok_response('', elgg_echo('videos:save:success'));
 	//add to river only if new
 	if ($new) {
 		elgg_create_river_item([
@@ -64,8 +64,8 @@ if ($video->save()) {
      	'object_guid' => $video->guid,
     ]);
 	}
-	forward($video->getURL());
+	return elgg_redirect_response($video->getURL());
 } else {
-	register_error(elgg_echo('videos:save:failed'));
-	forward("videos");
+	elgg_error_response(elgg_echo('videos:save:failed'));
+	return elgg_redirect_response("videos");
 }
