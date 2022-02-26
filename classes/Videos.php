@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 use Elgg\DefaultPluginBootstrap;
 
@@ -50,8 +50,6 @@ class Videos extends DefaultPluginBootstrap {
 
     // Register a URL handler for video posts
   	elgg_register_plugin_hook_handler('entity:url', 'object', 'videos_url_handler');
-
-  	elgg_register_entity_type('object', 'videos');
 
     elgg()->group_tools->register('videos', [
   		'default_on' => true,

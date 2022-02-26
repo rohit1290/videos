@@ -7,10 +7,19 @@ require_once __DIR__ . '/lib/hooks.php';
 return [
 	'plugin' => [
 		'name' => 'Videos',
-		'version' => '4.0',
+		'version' => '4.1',
 		'dependencies' => [],
 	],
 	'bootstrap' => Videos::class,
+	'entities' => [
+		[
+			'type' => 'object',
+			'subtype' => 'videos',
+			'capabilities' => [
+				'searchable' => true,
+			],
+		],
+	],
 	'actions' => [
 		'videos/save' => [],
 		'videos/delete' => [],
