@@ -19,7 +19,7 @@ $video_url = str_replace("http://youtu.be","https://www.youtube.be",$video_url);
 $guid = $object->guid;
 
 
-$vars['message'] = elgg_get_excerpt($object->description);
+$vars['message'] = elgg_get_excerpt($object->description == null ? "" : $object->description);
 $river_width = (int)elgg_get_plugin_setting('video_width_summary', 'videos');
 $vars['attachments'] = videoembed_create_embed_object($video_url, $guid, $river_width);
 

@@ -21,4 +21,4 @@ if ($video->getSubtype === 'videos' && $video->canEdit()) {
 }
 
 elgg_error_response(elgg_echo("videos:delete:failed"));
-return elgg_redirect_response(REFERER);
+return elgg_redirect_response(REFERRER);

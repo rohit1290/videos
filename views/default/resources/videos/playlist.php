@@ -136,7 +136,7 @@ if ($client->getAccessToken()) {
 
 $title = elgg_echo('youtube:playlist');
 
-elgg_register_title_button('videos', 'add', 'object', 'videos');
+elgg_register_title_button('add', 'object', 'videos');
 
 $body = elgg_view_layout('default', array(
         'content' => $htmlBody,

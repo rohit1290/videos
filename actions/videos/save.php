@@ -28,7 +28,7 @@ elgg_make_sticky_form('videos');
 
 if (!$title || !$video_url) {
 	elgg_error_response(elgg_echo('videos:save:failed'));
-	return elgg_redirect_response(REFERER);
+	return elgg_redirect_response(REFERRER);
 }
 
 if ($guid == 0) {
@@ -45,7 +45,7 @@ if ($guid == 0) {
 			return elgg_redirect_response(REFERRER);
 		}
 	}
-	$tagarray = string_to_tag_array($tags);
+	$tagarray = elgg_string_to_array($tags);
 	$video->title = $title;
 	$video->description = $description;
 	$video->access_id = $access_id;

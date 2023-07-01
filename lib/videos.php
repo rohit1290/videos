@@ -79,7 +79,7 @@ function videos_prepare_form_vars($video = null) {
 
 function detectmobile(){
 
-                $detect = new Mobile_Detect;
+                $detect = new \Detection\MobileDetect;
                 $mobile = $detect->isMobile();
                 $tablet = $detect->isTablet();
 

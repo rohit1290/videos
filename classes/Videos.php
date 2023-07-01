@@ -22,10 +22,10 @@ class Videos extends DefaultPluginBootstrap {
   	// require_once __DIR__ . '/lib/youtube_functions.php';
 
   	//extend owner block menu
-  	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'videos_owner_block_menu');
+  	elgg_register_event_handler('register', 'menu:owner_block', 'videos_owner_block_menu');
 
   	//Add menu's in sidebar
-  	elgg_register_plugin_hook_handler('register', 'menu:page', 'videos_page_menu');
+  	elgg_register_event_handler('register', 'menu:page', 'videos_page_menu');
 
   	$context =  elgg_get_context();
   	$contexts = elgg_get_plugin_setting('search_contexts','videos');
@@ -36,7 +36,7 @@ class Videos extends DefaultPluginBootstrap {
     }
 
   	// get items in video menu
-    elgg_register_plugin_hook_handler("register", "menu:entity", "videos_entity_menu_setup");
+    elgg_register_event_handler("register", "menu:entity", "videos_entity_menu_setup");
 
   	elgg_extend_view('css/elgg', 'videos/css');
 
@@ -46,10 +46,10 @@ class Videos extends DefaultPluginBootstrap {
       elgg_register_notification_event('object', 'videos', array('create'));
     }
 
-  	elgg_register_plugin_hook_handler('notify:entity:message', 'object', 'videos_notify_message');
+  	elgg_register_event_handler('notify:entity:message', 'object', 'videos_notify_message');
 
     // Register a URL handler for video posts
-  	elgg_register_plugin_hook_handler('entity:url', 'object', 'videos_url_handler');
+  	elgg_register_event_handler('entity:url', 'object', 'videos_url_handler');
 
     elgg()->group_tools->register('videos', [
   		'default_on' => true,
@@ -58,7 +58,7 @@ class Videos extends DefaultPluginBootstrap {
 
     $views = array('output/longtext','output/plaintext');
   	foreach($views as $view){
-  		elgg_register_plugin_hook_handler("view", $view, "videos_view_filter", 500);
+  		elgg_register_event_handler("view", $view, "videos_view_filter", 500);
   	}
   }
 	

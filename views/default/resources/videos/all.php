@@ -5,10 +5,9 @@
  *      Licence : GNU2
  */
 
-elgg_pop_breadcrumb();
 elgg_push_breadcrumb(elgg_echo('videos'), 'videos/featured');
 
-elgg_register_title_button('videos', 'add', 'object', 'videos');
+elgg_register_title_button('add', 'object', 'videos');
 
 $offset = (int)get_input('offset', 0);
 $content = elgg_list_entities(array(
@@ -26,7 +25,7 @@ $body = elgg_view_layout('default', array(
 	'filter_context' => 'all',
 	'content' => $content,
 	'title' => $title,
-	'filter_override' => elgg_view('videos/nav', array('selected' => $vars['page'])),
+	'filter_override' => elgg_view('videos/nav', array('selected' => elgg_extract('page',$vars))),
 	'sidebar' => elgg_view('videos/sidebar'),
 ));
 

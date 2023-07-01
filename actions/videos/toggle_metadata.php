@@ -35,5 +35,5 @@
                 elgg_error_response(elgg_echo("InvalidParameterException:MissingParameter"));
         }
 }
-        return elgg_redirect_response(REFERER);
+        return elgg_redirect_response(REFERRER);
 

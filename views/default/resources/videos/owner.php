@@ -9,7 +9,7 @@ $page_owner = elgg_get_page_owner_entity();
 
 elgg_push_breadcrumb($page_owner->name);
 
-elgg_register_title_button('videos', 'add', 'object', 'videos');
+elgg_register_title_button('add', 'object', 'videos');
 
 $title = elgg_echo('videos:owner', array($page_owner->name));
 

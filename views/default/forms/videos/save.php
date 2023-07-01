@@ -14,9 +14,6 @@ $access_id = elgg_extract('access_id', $vars, ACCESS_DEFAULT);
 $container_guid = elgg_extract('container_guid', $vars);
 $guid = elgg_extract('guid', $vars, null);
 
-
-echo $embed_url;
-
 echo elgg_view_field([
    '#type' => 'text',
    '#label' => elgg_echo('title'),

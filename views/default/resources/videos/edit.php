@@ -5,28 +5,16 @@
  *      Licence : GNU2
  */
 
-
 $video_guid = elgg_extract('guid', $vars);
+// elgg_entity_gatekeeper($video_guid, 'object', 'videos', true);
+
 $video = get_entity($video_guid);
 
-if ($video->getSubtype != 'videos') || !$video->canEdit()) {
-	elgg_error_response(elgg_echo('videos:unknown_video'));
-	return elgg_redirect_response(REFERRER);
-}
+elgg_push_entity_breadcrumbs($video);
 
-$page_owner = elgg_get_page_owner_entity();
+$content = elgg_view_form('videos/save', [], videos_prepare_form_vars($video));
 
-$title = elgg_echo('videos:edit');
-elgg_push_breadcrumb($title);
-// create form
-$form_vars = array();
-$body_vars = videos_prepare_form_vars($video);
-$content = elgg_view_form('videos/save', $form_vars, $body_vars);
-
-$body = elgg_view_layout('default', array(
+echo elgg_view_page(elgg_echo('videos:edit'), [
 	'filter' => '',
 	'content' => $content,
-	'title' => $title,
-));
-
-echo elgg_view_page($title, $body);
+]);

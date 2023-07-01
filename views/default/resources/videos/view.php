@@ -30,7 +30,7 @@ $content .= elgg_view_comments($video);
 $body = elgg_view_layout('default', array(
 	'content' => $content,
 	'title' => $title,
-	'filter_override' => elgg_view('videos/nav', array('selected' => $vars['page'])),
+	'filter_override' => elgg_view('videos/nav', array('selected' => elgg_extract('page', $vars))),
 	'header' => '',
 ));
 

@@ -82,10 +82,9 @@ if ($_GET['q'] && $_GET['maxResults']) {
   }
 }
 
-elgg_pop_breadcrumb();
 elgg_push_breadcrumb(elgg_echo('videos'), 'videos/featured');
 
-elgg_register_title_button('videos', 'add', 'object', 'videos');
+elgg_register_title_button('add', 'object', 'videos');
 
 $offset = (int)get_input('offset', 0);
 $content = $videos;
