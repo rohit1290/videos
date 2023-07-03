@@ -7,11 +7,11 @@
 
 $page_owner = elgg_get_page_owner_entity();
 
-elgg_push_breadcrumb($page_owner->name);
+elgg_push_breadcrumb($page_owner->getDisplayName(), $page_owner->getURL());
 
 elgg_register_title_button('add', 'object', 'videos');
 
-$title = elgg_echo('videos:owner', array($page_owner->name));
+$title = elgg_echo('videos:owner', array($page_owner->getDisplayName()));
 
 $offset = (int)get_input('offset', 0);
 $content .= elgg_list_entities(array(
@@ -25,7 +25,7 @@ $content .= elgg_list_entities(array(
 ));
 
 if (!$content) {
-	$title = elgg_echo('videos:owner:none', array($page_owner->name));
+	$title = elgg_echo('videos:owner:none', array($page_owner->getDisplayName()));
 	$content = elgg_echo('videos:none');
 }
 
