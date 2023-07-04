@@ -1,10 +1,4 @@
 <?php
-/**
- *      Author : Gerard Kanters
- *      @package Videos
- *      Licence : GNU2
- */
-
 $page_owner = elgg_get_page_owner_entity();
 
 $title = elgg_echo('videos:add');

@@ -1,14 +1,7 @@
 <?php
-/**
- *      Author : Gerard Kanters
- *      @package Videos
- *      Licence : GNU2
- */
-
 $owner = elgg_get_page_owner_entity();
 
-elgg_push_breadcrumb($owner->name, "videos/owner/$owner->username");
-elgg_push_breadcrumb(elgg_echo('friends'));
+elgg_push_collection_breadcrumbs('object', 'videos', $owner, true);
 
 elgg_register_title_button('add', 'object', 'videos');
 

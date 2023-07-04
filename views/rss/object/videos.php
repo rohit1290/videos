@@ -1,11 +1,4 @@
 <?php
-/**
- *      Author : Gerard Kanters
- *      @package Videos
- *      Licence : GNU2
- */
-
-
 $title = $vars['entity']->title;
 if (empty($title)) {
 	$title = substr($vars['entity']->description,0,32);

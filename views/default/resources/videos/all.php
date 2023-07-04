@@ -1,11 +1,5 @@
 <?php
-/**
- *      Author : Gerard Kanters
- *      @package Videos
- *      Licence : GNU2
- */
-
-elgg_push_breadcrumb(elgg_echo('videos'), 'videos/featured');
+elgg_push_breadcrumb('object', 'videos');
 
 elgg_register_title_button('add', 'object', 'videos');
 

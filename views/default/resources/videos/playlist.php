@@ -2,8 +2,8 @@
 
 // Call set_include_path() as needed to point to your client library.
 
-    include_once(elgg_get_plugins_path() . "videos/vendors/google/Google_Client.php");
-    include_once(elgg_get_plugins_path() . "videos/vendors/google/contrib/Google_YouTubeService.php");
+include_once(elgg_get_plugins_path() . "videos/vendors/google/Google_Client.php");
+include_once(elgg_get_plugins_path() . "videos/vendors/google/contrib/Google_YouTubeService.php");
 
 $user = elgg_get_logged_in_user_entity();
 

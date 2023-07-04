@@ -1,10 +1,4 @@
 <?php
-/**
- *      Author : Gerard Kanters
- *      @package Videos
- *      Licence : GNU2
- */
-
 $guid = get_input('guid');
 $video = get_entity($guid);
 

@@ -1,17 +1,19 @@
 <?php
-$user = elgg_get_page_owner_entity();
+elgg_group_tool_gatekeeper('videos');
 
-elgg_push_collection_breadcrumbs('object', 'videos', $user);
+$container = elgg_get_page_owner_entity();
+
+elgg_push_collection_breadcrumbs('object', 'videos', $container);
 
 elgg_register_title_button('add', 'object', 'videos');
 
-$title = elgg_echo('videos:owner', [$user->getDisplayName()]);
+$title = elgg_echo('videos:owner', [$container->getDisplayName()]);
 
 $offset = (int)get_input('offset', 0);
 $content .= elgg_list_entities([
 	'type' => 'object',
 	'subtype' => 'videos',
-	'container_guid' => $user->guid,
+	'container_guid' => $container->guid,
 	'limit' => 20,
 	'offset' => $offset,
 	'full_view' => false,
@@ -20,7 +22,7 @@ $content .= elgg_list_entities([
 ]);
 
 $filter_context = '';
-if ($user->guid == elgg_get_logged_in_user_guid()) {
+if ($container->guid == elgg_get_logged_in_user_guid()) {
 	$filter_context = 'mine';
 }
 
@@ -33,7 +35,7 @@ $vars = array(
 );
 
 // don't show filter if out of filter context
-if ($user instanceof ElggGroup) {
+if ($container instanceof ElggGroup) {
 	$vars['filter'] = false;
 }
 

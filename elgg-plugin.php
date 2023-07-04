@@ -26,18 +26,61 @@ return [
 		'videos/toggle_metadata' => [],
 	],
 	'routes' => [
-		'all:object:videos' => [
+		'default:object:videos' => [
 			'path' => '/videos/all',
 			'resource' => 'videos/all',
 		],
-		'owner:object:videos' => [
+		'collection:object:videos:all' => [
+			'path' => '/videos/all',
+			'resource' => 'videos/all',
+		],
+		'collection:object:videos:owner' => [
 			'path' => '/videos/owner/{username}',
 			'resource' => 'videos/owner',
+			'middleware' => [
+				\Elgg\Router\Middleware\UserPageOwnerGatekeeper::class,
+			],
 		],
-		'friends:object:videos' => [
+		'collection:object:videos:friends' => [
 			'path' => '/videos/friends/{username}',
 			'resource' => 'videos/friends',
+			'required_plugins' => [
+				'friends',
+			],
+			'middleware' => [
+				\Elgg\Router\Middleware\UserPageOwnerGatekeeper::class,
+			],
 		],
+		'collection:object:videos:group' => [
+			'path' => '/videos/group/{guid}',
+			'resource' => 'videos/group',
+			'required_plugins' => [
+				'groups',
+			],
+			'middleware' => [
+				\Elgg\Router\Middleware\GroupPageOwnerGatekeeper::class,
+			],
+		],
+		'add:object:videos' => [
+			'path' => '/videos/add/{guid}',
+			'resource' => 'videos/add',
+			'middleware' => [
+				\Elgg\Router\Middleware\Gatekeeper::class,
+				\Elgg\Router\Middleware\PageOwnerGatekeeper::class,
+			],
+		],
+		'edit:object:videos' => [
+			'path' => '/videos/edit/{guid}',
+			'resource' => 'videos/edit',
+			'middleware' => [
+				\Elgg\Router\Middleware\Gatekeeper::class,
+			],
+		],
+		'view:object:videos' => [
+			'path' => '/videos/view/{guid}/{title}',
+			'resource' => 'videos/view',
+		],
+
 		'playlist:object:videos' => [
 			'path' => '/videos/playlist/{id}',
 			'resource' => 'videos/playlist',
@@ -45,18 +88,6 @@ return [
 		'read:object:videos' => [
 			'path' => '/videos/read/{guid}',
 			'resource' => 'videos/view',
-		],
-		'view:object:videos' => [
-			'path' => '/videos/view/{guid}/{title}',
-			'resource' => 'videos/view',
-		],
-		'add:object:videos' => [
-			'path' => '/videos/add/{guid}',
-			'resource' => 'videos/add',
-		],
-		'edit:object:videos' => [
-			'path' => '/videos/edit/{guid}',
-			'resource' => 'videos/edit',
 		],
 		'featured:object:videos' => [
 			'path' => '/videos/featured/{guid}',
@@ -76,10 +107,6 @@ return [
 		],
 		'group_all:object:videos' => [
 			'path' => '/videos/group/{guid}/all',
-			'resource' => 'videos/owner',
-		],
-		'group_owner:object:videos' => [
-			'path' => '/videos/group/{guid}/owner',
 			'resource' => 'videos/owner',
 		],
 	],

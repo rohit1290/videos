@@ -1,10 +1,4 @@
 <?php
-/**
- *      Author : Gerard Kanters
- *      @package Videos
- *      Licence : GNU2
- */
-
 $group = elgg_get_page_owner_entity();
 
 if ($group->videos_enable == "no") {

@@ -1,13 +1,5 @@
 <?php
 /**
- * videos helper functions
- *	Author : Gerard Kanters
- *	@package Videos
- * 	Plugin info : Upload/ Embed videos. Save uploaded videos in youtube and save your bandwidth and server space
- *	Licence : GNU2
- */
-
-/**
  * Prepare the add/edit form variables
  *
  * @param ElggObject $video A video object.

@@ -1,10 +1,4 @@
 <?php
-/**
- *      Author : Gerard Kanters
- *      @package Videos
- *      Licence : GNU2
- */
-
 // once elgg_view stops throwing all sorts of junk into $vars, we can use extract()
 $title = elgg_extract('title', $vars, '');
 $desc = elgg_extract('description', $vars, '');

@@ -57,7 +57,7 @@ function videos_owner_block_menu(\Elgg\Hook $hook) {
 		$return[] = new ElggMenuItem('videos', elgg_echo('videos'), $url);
 	} else if ($entity instanceof ElggGroup) {
 		if ($entity->videos_enable != 'no') {
-			$url = "videos/group/{$params['entity']->guid}/owner";
+			$url = "videos/group/{$params['entity']->guid}";
 			$return[] = new ElggMenuItem('videos', elgg_echo('videos:group'), $url);
 		}
 	}

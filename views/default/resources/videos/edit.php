@@ -1,12 +1,6 @@
 <?php
-/**
- *      Author : Gerard Kanters
- *      @package Videos
- *      Licence : GNU2
- */
-
 $video_guid = elgg_extract('guid', $vars);
-// elgg_entity_gatekeeper($video_guid, 'object', 'videos', true);
+elgg_entity_gatekeeper($video_guid, 'object', 'videos', true);
 
 $video = get_entity($video_guid);
 

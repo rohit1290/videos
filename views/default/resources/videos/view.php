@@ -1,21 +1,16 @@
 <?php
-/**
- *      Author : Gerard Kanters
- *      @package Videos
- *      Licence : GNU2
- */
-
 $guid = elgg_extract('guid', $vars);
-$video = get_entity($guid);
 
 elgg_entity_gatekeeper($guid, 'object', 'videos');
+
+$video = get_entity($guid);
 
 $page_owner = elgg_get_page_owner_entity();
 
 $crumbs_title = $page_owner->name;
 
 if ($page_owner instanceof ElggGroup) {
-	elgg_push_breadcrumb($crumbs_title, "videos/group/$page_owner->guid/owner");
+	elgg_push_breadcrumb($crumbs_title, "videos/group/$page_owner->guid");
 } else {
 	elgg_push_breadcrumb($crumbs_title, "videos/owner/$page_owner->username");
 }

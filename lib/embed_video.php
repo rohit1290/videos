@@ -5,7 +5,6 @@
  *
  * @package Embed Video Library
  * @license http://www.gnu.org/licenses/gpl.html GNU Public License version 2
- * @author Gerard Kanters
  *
  *
  * Current video sites supported:

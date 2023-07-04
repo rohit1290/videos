@@ -1,10 +1,4 @@
 <?php
-/**
- *      Author : Gerard Kanters
- *      @package Videos
- *      Licence : GNU2
- */
-
 elgg_gatekeeper();
 $title = strip_tags(get_input('title'));
 $description = get_input('description');
