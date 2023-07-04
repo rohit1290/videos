@@ -107,7 +107,13 @@ return [
 		],
 		'group_all:object:videos' => [
 			'path' => '/videos/group/{guid}/all',
-			'resource' => 'videos/owner',
+			'resource' => 'videos/group',
+			'required_plugins' => [
+				'groups',
+			],
+			'middleware' => [
+				\Elgg\Router\Middleware\GroupPageOwnerGatekeeper::class,
+			],
 		],
 	],
 	'widgets' => [
