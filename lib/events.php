@@ -2,9 +2,9 @@
 /**
  * Process the Elgg views for a matching video URL
 */
-function videos_view_filter(\Elgg\Hook $hook) {
+function videos_view_filter(\Elgg\Event $event) {
 
-  $returnvalue = $hook->getValue();
+  $returnvalue = $event->getValue();
 	$patterns = array(	'/(((https?:\/\/)?)|(^.\/))(((www.)?)|(^.\/))youtube\.com\/watch[?]v=([^\[\]()<.,\s\n\t\r]+)/i',
 						'/(((https?:\/\/)?)|(^.\/))(((www.)?)|(^.\/))youtu\.be\/([^\[\]()<.,\s\n\t\r]+)/i',
 						'/(https?:\/\/)(www\.)?(vimeo\.com\/groups)(.*)(\/videos\/)([0-9]*)/i',
@@ -31,9 +31,9 @@ function videos_view_filter(\Elgg\Hook $hook) {
  * @param ElggObject $entity Page object
  * @return string
  */
-function videos_url_handler(\Elgg\Hook $hook) {
+function videos_url_handler(\Elgg\Event $event) {
     
-	$entity = $hook->getEntityParam();
+	$entity = $event->getEntityParam();
 
         if ($entity->getSubtype != 'videos') {
                 return;
@@ -46,10 +46,10 @@ function videos_url_handler(\Elgg\Hook $hook) {
 /**
  * Add a menu item to an ownerblock
  */
-function videos_owner_block_menu(\Elgg\Hook $hook) {
+function videos_owner_block_menu(\Elgg\Event $event) {
 
-  $return = $hook->getValue();
-  $params = $hook->getParams();
+  $return = $event->getValue();
+  $params = $event->getParams();
   $entity = elgg_extract('entity', $params);
   
 	if ($entity instanceof ElggUser) {
@@ -67,11 +67,11 @@ function videos_owner_block_menu(\Elgg\Hook $hook) {
 /**
  * Returns the body of a notification message
  */
-function videos_notify_message(\Elgg\Hook $hook) {
+function videos_notify_message(\Elgg\Event $event) {
 
-  $params = $hook->getParams();
+  $params = $event->getParams();
 
-	$entity = $hook->getEntityParam();
+	$entity = $event->getEntityParam();
 	$to_entity = $params['to_entity'];
 	$method = $params['method'];
 	if (($entity instanceof ElggEntity) && ($entity->getSubtype() == 'videos')) {
@@ -95,9 +95,9 @@ function videos_notify_message(\Elgg\Hook $hook) {
 	return null;
 }
 
-function videos_page_menu(\Elgg\Hook $hook) {
+function videos_page_menu(\Elgg\Event $event) {
 
-  $return = $hook->getValue();
+  $return = $event->getValue();
         // only show buttons in videos pages. Changed to videos1 to remove all menus
         //if (elgg_in_context('videos')) {
         if (elgg_in_context('videos')) {
@@ -129,15 +129,15 @@ function videos_page_menu(\Elgg\Hook $hook) {
         }
 }
 
-function videos_entity_menu_setup(\Elgg\Hook $hook) {
+function videos_entity_menu_setup(\Elgg\Event $event) {
 
-  $result = $hook->getValue();
+  $result = $event->getValue();
 
 	if (elgg_in_context("widgets")) {
     return $result;
   }
   
-  $entity = $hook->getEntityParam();
+  $entity = $event->getEntityParam();
 
   if($entity->getSubtype === "videos") {
      if(elgg_is_admin_logged_in()){

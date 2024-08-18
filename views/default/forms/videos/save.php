@@ -61,7 +61,7 @@ if ($guid) {
 }
 echo elgg_view_field([
 	'#type' => 'submit',
-	'value' => elgg_echo("save"),
+	'text' => elgg_echo("save"),
 ]);
 
 

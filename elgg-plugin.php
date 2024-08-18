@@ -2,12 +2,12 @@
 require_once __DIR__ . '/vendors/MobileDetect.php';
 require_once __DIR__ . '/lib/videos.php';
 require_once __DIR__ . '/lib/embed_video.php';
-require_once __DIR__ . '/lib/hooks.php';
+require_once __DIR__ . '/lib/events.php';
 
 return [
 	'plugin' => [
 		'name' => 'Videos',
-		'version' => '5.0',
+		'version' => '6.0',
 		'dependencies' => [],
 	],
 	'bootstrap' => Videos::class,
