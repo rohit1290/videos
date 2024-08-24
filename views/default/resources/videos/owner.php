@@ -8,7 +8,7 @@ elgg_register_title_button('add', 'object', 'videos');
 $title = elgg_echo('videos:owner', [$user->getDisplayName()]);
 
 $offset = (int)get_input('offset', 0);
-$content .= elgg_list_entities([
+$content = elgg_list_entities([
 	'type' => 'object',
 	'subtype' => 'videos',
 	'container_guid' => $user->guid,
@@ -28,7 +28,7 @@ $vars = array(
 	'filter_context' => $filter_context,
 	'content' => $content,
 	'title' => $title,
-	'filter_override' => elgg_view('videos/nav', array('selected' => $vars['page'])),
+	'filter_override' => elgg_view('videos/nav'),
 	'sidebar' => elgg_view('videos/sidebar'),
 );
 
