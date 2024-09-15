@@ -11,7 +11,7 @@ $mobile = $detect->isMobile();
 $full = elgg_extract('full_view', $vars, FALSE);
 $video = elgg_extract('entity', $vars, FALSE);
 
-if (!$video) {
+if (!$video instanceof \ElggObject) {
 	return;
 }
 
@@ -57,7 +57,7 @@ if (elgg_is_active_plugin('elggx_fivestar')) {
 
 
 if ($full && !elgg_in_context('gallery')) {
-	$header = elgg_view_title($video->title);
+	$header = elgg_view_title(($video->title ? $video->title : ""));
 
 	$params = array(
 		'entity' => $video,
