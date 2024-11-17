@@ -209,9 +209,12 @@ function videoembed_youtube_parse_url($url) {
 	$domain = $matches[2] . $matches[3];
 	$path = $matches[4];
 
+	$hash = "";
 	$parts = parse_url($url);
-	parse_str($parts['query'], $vars);
-	$hash = array_key_exists('v', $vars) ? $vars['v'] : "";
+	if (isset($parts['query'])) {
+	    parse_str($parts['query'], $vars);
+	    $hash = array_key_exists('v', $vars) ? $vars['v'] : "";
+	}
 
 	if($hash == "" || $hash == null){
 		$url_f = explode("?",$url);
